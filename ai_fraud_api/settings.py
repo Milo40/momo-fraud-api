@@ -37,12 +37,22 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost", cast=Csv())
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = config(
     "ALLOWED_ORIGINS",
-    default=["http://localhost:4200", "http://127.0.0.1:4200"],
+    default=[
+        "http://localhost:4200",
+        "http://127.0.0.1:4200",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     cast=Csv(),
 )
 CORS_ALLOWED_ORIGINS = config(
     "ALLOWED_ORIGINS",
-    default=["http://localhost:4200", "http://127.0.0.1:4200"],
+    default=[
+        "http://localhost:4200",
+        "http://127.0.0.1:4200",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     cast=Csv(),
 )
 
@@ -61,6 +71,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
